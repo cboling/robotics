@@ -15,9 +15,31 @@
 #    Jemison High School - Huntsville Alabama                              #
 # ------------------------------------------------------------------------ #
 
-transitions == 0.9.3
-psutil      == 7.0.0
+robotpy             == 2025.3.2.2       # Main module and CLI for the robotics platform
+robotpy-commands-v2 == 2025.3.2
+robotpy-apriltag    == 2025.3.2.3
+psutil              == 7.1.2            # For runtime statistics
 
-# Following are for OpenTelemetry support
-opentelemetry-exporter-otlp == 1.34.1
+###############################################################################
+# Following are for OpenTelemetry support. None of the files below
+# are needed for competition. They are useful during development so
+# that we can trace what software paths are taken and observe the
+# timing.
+opentelemetry-exporter-otlp == 1.38.0
 otel-extensions             == 1.1.0
+
+# The next provides for auto-instrumentation and starting
+# with the second line are the modules installed with
+# the OpenTelemetry bootstrap install command.
+opentelemetry-distro                         == 0.59b0
+#
+opentelemetry-instrumentation-asyncio        == 0.59b0
+opentelemetry-instrumentation-dbapi          == 0.59b0
+opentelemetry-instrumentation-logging        == 0.59b0
+opentelemetry-instrumentation-urllib         == 0.59b0
+opentelemetry-util-http                      == 0.59b0
+opentelemetry-instrumentation-wsgi           == 0.59b0
+opentelemetry-instrumentation-grpc           == 0.59b0
+opentelemetry-instrumentation-requests       == 0.59b0
+opentelemetry-instrumentation-system-metrics == 0.59b0
+opentelemetry-instrumentation-urllib3        == 0.59b0

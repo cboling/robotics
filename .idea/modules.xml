@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../github/examples/.idea/examples.iml" filepath="$PROJECT_DIR$/../../github/examples/.idea/examples.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../github/mostrobotpy/.idea/mostrobotpy.iml" filepath="$PROJECT_DIR$/../../github/mostrobotpy/.idea/mostrobotpy.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/robotics.iml" filepath="$PROJECT_DIR$/.idea/robotics.iml" />
     </modules>

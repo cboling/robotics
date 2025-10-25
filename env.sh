@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # ------------------------------------------------------------------------ #
 #      o-o      o                o                                         #
 #     /         |                |                                         #
@@ -14,11 +15,17 @@
 #                                                                          #
 #    Jemison High School - Huntsville Alabama                              #
 # ------------------------------------------------------------------------ #
--r ../src//requirements.txt
+# load local python virtualenv if exists
+VENVDIR=${VENVDIR:-venv}
+PACKAGEDIR=${PACKAGEDIR:-src}
+PYVERSION=${PYVERSION:-"3.13"}
 
-tox          == 4.23.2
-pytest       == 8.3.4
-pytest-cov   == 6.0.0
-coverage     == 7.6.10
-pylint       == 3.3.4
-platformdirs == 4.3.6
+if [ -e "${VENVDIR}/.built" ]; then
+    . $VENVDIR/bin/activate
+else
+   echo "Creating python development environment"
+ 	 python3 -m virtualenv --python=python${PYVERSION} -v ${VENVDIR} &&\
+        source ./${VENVDIR}/bin/activate && set -u && \
+        pip install --disable-pip-version-check -r ${PACKAGEDIR}/requirements.txt && \
+        uname -s > ${VENVDIR}/.built
+fi

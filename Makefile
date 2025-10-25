@@ -23,7 +23,7 @@ SHELL = bash -eu -o pipefail
 THIS_MAKEFILE	:= $(abspath $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST)))
 WORKING_DIR		:= $(dir $(THIS_MAKEFILE))
 PACKAGE_DIR     := $(WORKING_DIR)src
-TEST_DIR        := $(WORKING_DIR)tests
+TEST_DIR        := $(WORKING_DIR)src/tests
 
 include .make/setup.mk
 
@@ -40,6 +40,12 @@ COVERAGE_OPTS	 = --with-xcoverage --with-xunit \
 
 VERSION         := $(shell grep VERSION ${PACKAGE_DIR}/version.py  | awk '{ print $$3 }' | sed 's/"//g')
 
+# OpenTelemetry Options
+OTEL_SERVICE_NAME 	  := cyberjagzz
+OTEL_TRACE_EXPORTER	  := console,otlp
+OTEL_METRICS_EXPORTER := console
+OTEL_OLTP_ENDPOINT    := supermicro:4317
+
 # Lint tools
 PYLINT_DISABLES  = -d similarities -d broad-except -d missing-class-docstring
 PYLINT_OPTS		 = -j 4 --exit-zero --rcfile=${WORKING_DIR}.pylintrc $(PYLINT_DISABLES)
@@ -47,21 +53,19 @@ PYLINT_OUT		 = $(WORKING_DIR)pylint.out
 
 LICENSE_OUT      = $(WORKING_DIR)license-check.out
 
-
-# Docker labels. Only set ref and commit date if committed
-DOCKER_LABEL_VCS_URL     ?= $(shell git remote get-url $(shell git remote))
-DOCKER_LABEL_VCS_REF      = $(shell git rev-parse HEAD)
-DOCKER_LABEL_BUILD_DATE  ?= $(shell date -u "+%Y-%m-%dT%H:%M:%SZ")
-DOCKER_LABEL_COMMIT_DATE  = $(shell git show -s --format=%cd --date=iso-strict HEAD)
-
-DOCKER_MOUNT_ARGS        ?= --mount type=bind,source=/etc/tibit/ponauto/PonAutoInit.json,target=/etc/tibit/ponauto/PonAutoInit.json
-
-.PHONY: venv venv-test venv-sudo test clean distclean
+.PHONY: venv venv-test venv-sudo test clean distclean install sync
 
 ## Defaults
 default: help		## Default operation is to print this help text
 
 include .make/telemetry.mk        # OpenTelemetry support
+
+## Installation and project maintenance commands
+install:		## Install to the application on the roboRIO
+	(cd ${PACKAGE_DIR} && python3 -m robotpy deploy)
+
+sync:		## Synchronize this project with the pyproject.toml
+	(cd ${PACKAGE_DIR} && python3 -m robotpy sync)
 
 ## Virtual Environment
 venv: $(REQUIREMENTS) $(VENVDIR)/.built		    ## Application virtual environment
@@ -121,6 +125,12 @@ test: venv-test		## Run tox-based unit tests
 	@ python -m pip install --upgrade --disable-pip-version-check tox && \
 	   . ${TESTVENVDIR}/bin/activate && tox
 
+
+frc-test: venv-test		## Run FRC unit tests
+	$(Q) echo "Executing unit tests w/tox"
+	@ python -m pip install --upgrade --disable-pip-version-check tox && \
+	   . ${TESTVENVDIR}/bin/activate && tox
+
 ######################################################################
 ## Linting
 
@@ -133,7 +143,7 @@ lint: venv-test     ## Run lint on PON Automation using pylint
 # Release related (Lint ran last since it probably will have errors until
 # the code is refactored (which is not planned at this time)
 ## Release Procedures
-release-check: distclean venv venv-test test bandit-test lint	## Clean distribution and run unit-test, security, and lint
+release-check: distclean venv venv-test test bandit-test-all lint	## Clean distribution and run unit-test, security, and lint
 
 ######################################################################
 ## Utility
@@ -145,7 +155,7 @@ clean:		## Cleanup directory of build and test artifacts
 	@ -find . -name 'htmlcov' | xargs rm -rf
 	@ -find . -name 'junit-report.xml' | xargs rm -rf
 	@ -find . -name 'coverage.xml' | xargs rm -rf
-	@ -find . -name 'bandit.log' | xargs rm -rf
+	@ -find . -name '*.log' | xargs rm -rf
 	@ -find . -name '._.DS_Store' | xargs rm -rf
 	@ -find . -name '*state_machine.png' | xargs rm -f
 	@ -find . -name '*state_machine.svg' | xargs rm -f

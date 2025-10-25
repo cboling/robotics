@@ -35,7 +35,7 @@ def init_logging() -> logging.Logger:
         datefmt='%Y-%m-%d %H:%M:%S'
     )
     logging.basicConfig(
-        level=logging.INFO,
+        level=logging.WARNING,
         # format='%(asctime)s.%(msecs)03d %(levelname)-8s - %(name)-12s %(message)s',
         format='%(asctime)s %(levelname)-6s - %(name)-12s %(message)s',
         handlers=[
