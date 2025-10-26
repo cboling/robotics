@@ -16,8 +16,6 @@
 # ------------------------------------------------------------------------ #
 #
 import argparse
-import asyncio
-import logging
 import os
 import socket
 import sys
@@ -27,6 +25,8 @@ from typing import Optional
 
 from wpilib import RobotBase
 
+import asyncio
+import logging
 from robo2026.service import RobotService
 from util.debug import debug_enable
 from util.logging import init_logging
