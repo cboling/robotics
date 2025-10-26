@@ -16,7 +16,6 @@
 #    Jemison High School - Huntsville Alabama                              #
 # ------------------------------------------------------------------------ #
 
-import asyncio
 import sys
 import time
 import traceback
@@ -24,9 +23,9 @@ from typing import Optional
 
 from commands2 import TimedCommandRobot, CommandScheduler
 from commands2.command import Command
-from wpilib import DriverStation
 
-from robo2026.asyncio import initialize, shutdown
+import asyncio
+from robo2026.asyncio_wrapper import initialize, shutdown
 from robo2026.robotcontainer import RobotContainer
 from robo2026.service import RobotService
 from util.logging import init_logging
