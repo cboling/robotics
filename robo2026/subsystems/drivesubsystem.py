@@ -5,8 +5,9 @@
 #
 
 import commands2
-from wpilib import PWMSparkMax, Encoder
+from wpilib import PWMSparkMax
 from wpilib.drive import DifferentialDrive
+
 
 from robo2026.constants import DriveConstants
 

@@ -3,15 +3,19 @@
 # Open Source Software; you can modify and/or share it under the terms of
 # the WPILib BSD license file in the root directory of this project.
 #
+import logging
 
 import commands2
 import commands2.button
 import commands2.cmd
 
+from wpilib import DriverStation, RobotBase
+
 from robo2026 import constants
 from robo2026.subsystems.armsubsystem import ArmSubsystem
 from robo2026.subsystems.drivesubsystem import DriveSubsystem
 
+logger = logging.getLogger(__name__)
 
 class RobotContainer:
     """
@@ -25,12 +29,17 @@ class RobotContainer:
         # The robot's subsystems
         self.robot_drive = DriveSubsystem()
         self.robot_arm = ArmSubsystem()
+        self.simulation = RobotBase.isSimulation()
+
+        # If this is a simulation, we need to silence joystick warnings
+        if self.simulation:
+            logger.warning("Simlation detected. Silencing annoying JoyStick warnings")
+            DriverStation.silenceJoystickConnectionWarning(True)
 
         # The driver's controller
         self.driver_controller = commands2.button.CommandXboxController(
             constants.OIConstants.kDriverControllerPort
         )
-
         # Configure the button bindings
         self.configureButtonBindings()
 

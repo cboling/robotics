@@ -24,6 +24,7 @@ from typing import Optional
 
 from commands2 import TimedCommandRobot, CommandScheduler
 from commands2.command import Command
+from wpilib import DriverStation
 
 from robo2026.asyncio import initialize, shutdown
 from robo2026.robotcontainer import RobotContainer

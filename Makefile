@@ -22,8 +22,8 @@ SHELL = bash -eu -o pipefail
 # Variables
 THIS_MAKEFILE	:= $(abspath $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST)))
 WORKING_DIR		:= $(dir $(THIS_MAKEFILE))
-PACKAGE_DIR     := $(WORKING_DIR)src
-TEST_DIR        := $(WORKING_DIR)src/tests
+PACKAGE_DIR     := $(WORKING_DIR)
+TEST_DIR        := $(WORKING_DIR)tests
 
 include .make/setup.mk
 
@@ -62,10 +62,10 @@ include .make/telemetry.mk        # OpenTelemetry support
 
 ## Installation and project maintenance commands
 install:		## Install to the application on the roboRIO
-	(cd ${PACKAGE_DIR} && python3 -m robotpy deploy)
+	python3 -m robotpy deploy
 
 sync:		## Synchronize this project with the pyproject.toml
-	(cd ${PACKAGE_DIR} && python3 -m robotpy sync)
+	python3 -m robotpy sync
 
 ## Virtual Environment
 venv: $(REQUIREMENTS) $(VENVDIR)/.built		    ## Application virtual environment

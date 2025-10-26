@@ -37,6 +37,10 @@ class RobotService(AsyncioWorkerThread):
         self._args = args
         self._tasks = []
 
+    @property
+    def args(self) -> argparse.Namespace:
+        return self._args
+    
     async def close(self, reason: Optional[str] = "") -> None:
         """ Initiate shutdown of the main application thread and asyncio event loop """
         if self._debug:
