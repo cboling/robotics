@@ -8,7 +8,7 @@ import commands2
 from wpilib import PWMSparkMax, Encoder
 from wpilib.drive import DifferentialDrive
 
-from robo2026.constants import DriveConstants
+from robot2025.constants import DriveConstants
 
 
 class DriveSubsystem(commands2.Subsystem):

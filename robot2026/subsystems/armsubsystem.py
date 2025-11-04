@@ -9,7 +9,7 @@ import wpilib
 import wpimath.controller
 import wpimath.trajectory
 
-from robo2026.constants import ArmConstants
+from robot2025.constants import ArmConstants
 
 
 class ArmSubsystem(commands2.ProfiledPIDSubsystem):

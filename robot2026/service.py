@@ -16,10 +16,10 @@
 # ------------------------------------------------------------------------ #
 
 import argparse
-import asyncio
-import logging
 from typing import Optional
 
+import asyncio
+import logging
 from util.worker_thread import AsyncioWorkerThread
 
 logger = logging.getLogger(__name__)

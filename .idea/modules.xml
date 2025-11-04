@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../github/XRP_Micropython/.idea/XRP_Micropython.iml" filepath="$PROJECT_DIR$/../../github/XRP_Micropython/.idea/XRP_Micropython.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../github/examples/.idea/examples.iml" filepath="$PROJECT_DIR$/../../github/examples/.idea/examples.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../frc-2025/.idea/frc-2025.iml" filepath="$PROJECT_DIR$/../frc-2025/.idea/frc-2025.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../github/mostrobotpy/.idea/mostrobotpy.iml" filepath="$PROJECT_DIR$/../../github/mostrobotpy/.idea/mostrobotpy.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/robotics.iml" filepath="$PROJECT_DIR$/.idea/robotics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../robotics-2025/.idea/robotics-2025.iml" filepath="$PROJECT_DIR$/../robotics-2025/.idea/robotics-2025.iml" />
     </modules>
   </component>
 </project>

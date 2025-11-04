@@ -28,13 +28,18 @@ source ./env.sh
 
 ## Windows
 
-#  
+
 
 ## More Information
 
 This project started by following the commands in the steps outlined in the
-[FRC Programming Guide ](https://docs.wpilib.org/en/stable/docs/software/python/index.html).
+[FRC Programming Guide](https://docs.wpilib.org/en/stable/docs/software/python/index.html).
 These steps do not need to
 
-#
+# Resources
+
+Here are some useful resources
+
+- [pyrobot](https://pyrobot.org/)
+- [Pheonix Software](https://docs.ctr-electronics.com/) - Pheonix6 drivers
 

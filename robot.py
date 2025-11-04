@@ -19,15 +19,14 @@
 import sys
 import time
 import traceback
-from typing import Optional
-
 from commands2 import TimedCommandRobot, CommandScheduler
 from commands2.command import Command
+from robot2025.service import RobotService
+from typing import Optional
 
 import asyncio
-from robo2026.asyncio_wrapper import initialize, shutdown
-from robo2026.robotcontainer import RobotContainer
-from robo2026.service import RobotService
+from robot2025.asyncio_wrapper import initialize, shutdown
+from robot2025.robotcontainer import RobotContainer
 from util.logging import init_logging
 
 # Setup Logging
@@ -127,6 +126,17 @@ class MyRobot(TimedCommandRobot):
         # Cancels all running commands at the start of test mode
         CommandScheduler.getInstance().cancelAll()
 
+    def testPeriodic(self):
+        pass
+
+    def testExit(self):
+        pass
+
+    def simulationInit(self) -> None:
+        pass
+
+    def simulationPeriodic(self):
+        pass
 
 #####################################################################################
 # Main Entry point (if called from the command line and not the simulator or roboRIO

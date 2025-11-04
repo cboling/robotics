@@ -5,8 +5,8 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/robo2026" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/util" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/robot2026" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
       <excludeFolder url="file://$MODULE_DIR$/venv-test" />
     </content>
@@ -14,5 +14,8 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="mostrobotpy" />
     <orderEntry type="module" module-name="examples" />
+    <orderEntry type="module" module-name="frc-2025" />
+    <orderEntry type="module" module-name="robotics-2025" />
+    <orderEntry type="module" module-name="XRP_Micropython" />
   </component>
 </module>

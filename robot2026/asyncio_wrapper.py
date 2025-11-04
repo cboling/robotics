@@ -21,13 +21,12 @@ import socket
 import sys
 import threading
 import time
+from robot2025.service import RobotService
 from typing import Optional
-
 from wpilib import RobotBase
 
 import asyncio
 import logging
-from robo2026.service import RobotService
 from util.debug import debug_enable
 from util.logging import init_logging
 from version import VERSION

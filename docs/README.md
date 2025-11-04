@@ -12,7 +12,7 @@ curl -fsSL https://pyenv.run | bash
 
 macOS
 
-```shell
+```shell[frc-2025](../../frc-2025)
 brew update
 brew install pyenv
 ```
